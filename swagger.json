@@ -1,0 +1,167 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "This is the api for user management",
+        "version": "__version__"
+    },
+    "tags": [
+        {
+        "name": "PUBLIC ROUTE",
+        "description": "PUBLIC ROUTE"
+        }
+    ],
+    "paths":
+    {
+        "/health":{
+            "summary": "Testing Health",
+            "get": {
+                "description": "Getting health fo server",
+                "tags":["PUBLIC ROUTE"],
+                "responses": {
+                    "200":{
+                        "description": "Health OK"
+                    }
+                }
+            }
+        },
+        "/users":{
+            "summary": "Getting users",
+            "get": {
+                "description": "Getting users",
+                "tags":["PUBLIC ROUTE"],
+                "parameters": [
+                    {
+                        "in":"query",
+                        "name":"role",
+                        "schema":{
+                            "type":"string",
+                            "description":"Choose role as Admin or User"
+                        }
+                    },
+                    {
+                        "in":"query",
+                        "name":"city",
+                        "schema":{
+                            "type":"string",
+                            "description":"Enter your city"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Users found"
+                    }
+                }
+            }
+        },
+        "/user/{id}":{
+            "summary": "Getting particular user",
+            "get": {
+                "description": "Getting a user",
+                "tags":["PUBLIC ROUTE"],
+                "parameters": [
+                    {
+                        "in":"path",
+                        "name":"id",
+                        "schema":{
+                            "type":"string",
+                            "description":"Choose role as Admin or User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "User found"
+                    }
+                }
+            }
+        },
+        "/addUser":{
+            "summary": "Adding new user",
+            "post": {
+                "description": "Adding new user",
+                "tags":["PUBLIC ROUTE"],
+                "requestBody":{
+                    "required":true,
+                    "content":{
+                        "application/json": {
+                            "schema":{
+                                "type":"object",
+                                "id":"string"
+                            },
+                            "example":{
+                                "name": "Amit",
+                                "city": "Venice",
+                                "phone": 9879908907,
+                                "role": "user",
+                                "isActive": true
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "User added"
+                    }
+                }
+            }
+        },
+        "/updateUser":{
+            "summary": "Update user",
+            "put": {
+                "description": "Update user",
+                "tags":["PUBLIC ROUTE"],
+                "requestBody":{
+                    "required":true,
+                    "content":{
+                        "application/json": {
+                            "schema":{
+                                "type":"object",
+                                "id":"string"
+                            },
+                            "example":{
+                                "_id": "620db800d586e5baf67c5e76",
+                                "name": "Amit",
+                                "city": "Venice",
+                                "phone": 9879908907,
+                                "role": "user",
+                                "isActive": true
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "User updated"
+                    }
+                }
+            }
+        },
+        "/deleteUser":{
+            "summary": "Deactivate user",
+            "delete": {
+                "description": "Deactivate user",
+                "tags":["PUBLIC ROUTE"],
+                "requestBody":{
+                    "required":true,
+                    "content":{
+                        "application/json": {
+                            "schema":{
+                                "type":"object",
+                                "id":"string"
+                            },
+                            "example":{
+                                "_id": "620db800d586e5baf67c5e76"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "User updated"
+                    }
+                }
+            }
+        }
+    }
+}
